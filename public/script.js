@@ -16,7 +16,8 @@
 // }
 
 const timezone_label = "Time Zone: Central Time (GMT-05:00)";
-const sheet_url = 'https://api.sheety.co/503cd683d77f4feeb101a928a19c01b6/appointmentTracker/bookings';
+// const sheet_url = 'https://api.sheety.co/503cd683d77f4feeb101a928a19c01b6/appointmentTracker/bookings';
+const sheet_url = 'https://notion-demo3.vercel.app/api/notion_fetch'
 
 let cachedTimes = null;
 
@@ -32,21 +33,17 @@ async function fetchTimes() {
     if (cachedTimes) return cachedTimes;
 
     try {
+        //await notion_get_open_time_slots();
         const response = await fetch(sheet_url);
-        const json = await response.json();
+        const data = await response.json();
     
 
-        const data = json.bookings
-            .filter(row => row.status === "Open")
-            .map(row => ({
-                date: row.date,
-                time: row.time
-            }));
-        // const dateTimePairs = data.reduce((acc, row) => {
-        //     if (!acc[row.date]) acc[row.date] = [];
-        //     acc[row.date].push(row);
-        //     return acc;
-        // }, {});
+        // const data = json.bookings
+        //     .filter(row => row.status === "Open")
+        //     .map(row => ({
+        //         date: row.date,
+        //         time: row.time
+        //     }));
 
         console.log(data);
         let weekGroups = Object.groupBy(data, item => {
