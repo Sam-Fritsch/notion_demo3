@@ -45,10 +45,13 @@ export default async function handler(req, res) {
     const length_slots = results.length;
     const slots_cleaned = [];
 
+
+// Go through the json and extract the properties
+// Properties get stored in a new area called slots_cleaned
+
     for (let i = 0; i < results.length; i++) {
       const props = results[i].properties;
 
-      // Extract the values safely
       const status = props.Status.status?.name || null;
       const date = props.Date.date?.start || null;
       const time = props.Time.rich_text[0]?.plain_text || null;
@@ -58,15 +61,14 @@ export default async function handler(req, res) {
       const email = props.Email?.email || null;
       const phone = props.Phone?.phone_number || null;
 
-      // Push an object with both
-      slots_cleaned.push({ status, date, time, service, firstName, lastName, email, phone});
+      slots_cleaned.push({status, date, time, service, firstName, lastName, email, phone});
     }
 
-console.log(slots_cleaned);
-// e.g. ["Open", "Open", "Open", ...]
+// Only return open time slots
+    const filtered_slots = slots_cleaned.filter(slot => slot.status === 'Open');
 
 
-    res.status(200).json(slots_cleaned);
+    res.status(200).json(filtered_slots);
 
   } catch (error) {
     console.error('Error fetching Notion:', error);
