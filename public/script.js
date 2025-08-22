@@ -32,7 +32,6 @@ async function fetchTimes() {
     if (cachedTimes) return cachedTimes;
 
     try {
-        await notion_get_open_time_slots();
         const response = await fetch(sheet_url);
         const json = await response.json();
     

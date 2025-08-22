@@ -65,7 +65,12 @@ export default async function handler(req, res) {
     }
 
 // Only return open time slots
-    const filtered_slots = slots_cleaned.filter(slot => slot.status === 'Open');
+      const filtered_slots = slots_cleaned
+        .filter(slot => slot.status === 'Open')
+        .map(slot => ({
+          date: slot.date,
+          time: slot.time
+        }));
 
 
     res.status(200).json(filtered_slots);
