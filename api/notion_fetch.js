@@ -52,9 +52,12 @@ export default async function handler(req, res) {
       const status = props.Status.status?.name || null;
       const date = props.Date.date?.start || null;
       const time = props.Time.rich_text[0]?.plain_text || null;
+      const service = props.Service.rich_text[0]?.plain_text || null;
+      const firstName = props["First Name"].rich_text[0]?.plain_text || null;
+      const lastName = props["Last Name"].rich_text[0]?.plain_text || null;
 
       // Push an object with both
-      slots_cleaned.push({ status, date, time });
+      slots_cleaned.push({ status, date, time, service, firstName, lastName });
     }
 
 console.log(slots_cleaned);
