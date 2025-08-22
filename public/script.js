@@ -22,9 +22,9 @@ let cachedTimes = null;
 
 async function notion_testing() {
     const response = await fetch('https://notion-demo3.vercel.app/api/notion_fetch');
-    // const data = await response.json();
+    const data = await response.json();
     // results = data["results"];
-    // console.log(results);
+    console.log(data);
 }
 
 
