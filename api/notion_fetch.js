@@ -51,7 +51,7 @@ export default async function handler(req, res) {
       // Extract the values safely
       const status = props.Status.status?.name || null;
       const date = props.Date.date?.start || null;
-      const time = props.Time.rich_text?.plain_text || null;
+      const time = props.Time.rich_text[0]?.plain_text || null;
 
       // Push an object with both
       slots_cleaned.push({ status, date, time });
