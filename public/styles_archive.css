@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(255, 239, 239);
+    color: rgb(14, 14, 14);
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 2rem;
+    background-color: rgb(255, 239, 239);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: rgb(14, 14, 14);
+}
+
+header p {
+    font-size: 1rem;
+    color: rgb(14, 14, 14);
+}
+
+.booking-form p{
+    text-align: center;
+}
+
+.booking-form {
+    max-width: 400px;
+    margin: 2rem auto;
+    background: rgb(255, 239, 239);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.booking-form h2 {
+    text-align: center;
+    color: rgb(14, 14, 14);
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #c86b85;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b35d75;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+    background-color: #fff6f8;
+    color: #888;
+}

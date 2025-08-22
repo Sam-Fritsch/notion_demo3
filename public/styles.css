@@ -1,0 +1,348 @@
+body {
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: rgb(255, 239, 239);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+img.logo{
+    background-color: black;
+    width: 150px;
+    height: 150px;
+}
+
+
+.main-page {
+    position: relative;
+    min-height: 100vh; /* Ensures it's at least full viewport height */
+}
+
+img.leaf_top_left {
+    position: absolute;
+    left: 0;
+    top: 0; 
+    width: 10%;
+    height: auto;    
+    /* width: 150px;
+    height: 150px; */
+}
+
+img.leaf_top_right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 10%;
+    height: auto;  
+}
+
+.leaf_bottom_left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 10%;
+    height: auto;  
+}
+
+.leaf_bottom_right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10%;
+    height: auto;  
+}
+
+img.logo{
+    background-color: black;
+    width: 10%;
+    height: auto;  
+}
+
+
+
+header {
+    padding: 2rem 0;
+    background-color: rgb(255, 239, 239);
+}
+
+/* h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: rgb(14, 14, 14);
+} */
+h1{
+    font-size: 26px;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    color: #C2185B;
+    font-weight: 600;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 28px;
+    text-align: center;
+    margin: 0px;
+    margin-bottom: 3rem;
+    padding-top: 0px;
+}
+
+/* h2 {
+    margin-top: 0.5rem;
+    font-weight: 400;
+    color: rgb(14, 14, 14);
+} */
+
+h2{
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    color: rgb(14, 14, 14);
+    font-weight: 600;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0px 0px 0px 6px;
+    display: inline;
+}
+
+
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem auto;
+}
+
+
+.select-item {
+    background-color: rgb(255, 239, 239);
+    margin: 0 auto 1.5rem auto;  
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 90%;
+    max-width: 850px; 
+}
+
+.select-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.box_css {
+    padding: 1.2rem;
+    width: 500px;     
+    max-width: 100%;     
+    margin: 0 auto;     
+    box-sizing: border-box;
+}
+
+.appointment-type-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: rgb(14, 14, 14);
+}
+
+.duration {
+    font-size: 1rem;
+    color: #777;
+}
+
+.description {
+    font-size: 1rem;
+    color: #777;
+}
+
+.social-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.social-container a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;   
+    height: 50px; 
+    text-decoration: none;
+    color: #000;
+}
+
+
+.social-container ion-icon,
+.social-container i.fa-brands {
+    width: 100%;
+    height: 100%;
+    font-size: 50px;
+}
+
+button.book-button{
+    background-color: rgb(14, 14, 14);
+    color: rgb(255, 255, 255);
+    border-color: transparent;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 600;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+.time-zone-label{
+    font-size: 1rem;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: rgb(14, 14, 14);
+}
+
+.week-header{
+    justify-content: center;
+    text-align: center;
+    color: rgb(14, 14, 14);
+}
+
+.week-navigation{
+    justify-content: center;
+    text-align: center; 
+    color: rgb(14, 14, 14);
+    margin-top: 20px;
+}
+
+.nav-button{ 
+    background-color: rgb(255, 239, 239);
+    /* border-color: transparent; */
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+.time-slots{
+    list-style: none;
+    margin-top: 20px;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.specific-times {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* .specific-times li {
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 6px 12px;       
+    margin-bottom: 1px;   
+    margin-left: 1px; 
+    margin-right: 1px; 
+    text-align: center;     
+    width: fit-content;   
+    margin-left: auto;  
+    margin-right: auto;
+} */
+
+button.time-slot-button{
+    background-color: rgb(255, 239, 239);
+    color: rgb(14, 14, 14);
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    border: 1px solid rgba(14, 14, 14, 0.22);
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px 20px;  
+    font-size: 16px;
+    flex: 1;    
+    min-width: 110px;        
+    min-height: 50px;      
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+button.time-slot-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    background-color: #777;
+}
+
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #555;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#required{
+    color: #C2185B;
+    font-style: italic;
+}
+
+.required-icon{
+    color: #C2185B;
+    font-style: italic;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; 
+    text-align: center;    
+}
+
+
+.submit-button {
+    background-color: #333;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+
+.submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    background-color: #777;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
