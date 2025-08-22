@@ -41,11 +41,12 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     const results = data["results"];
+
     const length_slots = results.length;
     const slots_cleaned = [];
 
     for (let i = 0; i < length_slots; i++) {
-      const slot = results[i]["properties"];
+      const slot = results[i];
       slots_cleaned.push(slot);
     }
 
