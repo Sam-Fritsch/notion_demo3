@@ -55,9 +55,11 @@ export default async function handler(req, res) {
       const service = props.Service.rich_text[0]?.plain_text || null;
       const firstName = props["First Name"].rich_text[0]?.plain_text || null;
       const lastName = props["Last Name"].rich_text[0]?.plain_text || null;
+      const email = props.Email?.email || null;
+      const phone = props.Phone?.phone_number || null;
 
       // Push an object with both
-      slots_cleaned.push({ status, date, time, service, firstName, lastName });
+      slots_cleaned.push({ status, date, time, service, firstName, lastName, email, phone});
     }
 
 console.log(slots_cleaned);
