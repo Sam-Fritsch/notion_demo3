@@ -23,7 +23,7 @@ let cachedTimes = null;
 function notion_testing() {
     fetch('https://notion-demo3.vercel.app/api/notion_fetch')
   .then(data => console.log(data));
-  console.log("hello world");
+  console.log(typeof(data));
 }
 
 
