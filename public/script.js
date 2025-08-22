@@ -20,10 +20,11 @@ const sheet_url = 'https://api.sheety.co/503cd683d77f4feeb101a928a19c01b6/appoin
 
 let cachedTimes = null;
 
-function notion_testing() {
-    fetch('https://notion-demo3.vercel.app/api/notion_fetch')
-  .then(data => console.log(data));
-  console.log(typeof(data));
+async function notion_testing() {
+    const response = await fetch('https://notion-demo3.vercel.app/api/notion_fetch');
+    const data = await response.json();
+    console.log(data);
+    console.log(typeof(data));
 }
 
 
