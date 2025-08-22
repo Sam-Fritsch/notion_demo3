@@ -20,7 +20,7 @@ const sheet_url = 'https://api.sheety.co/503cd683d77f4feeb101a928a19c01b6/appoin
 
 let cachedTimes = null;
 
-async function notion_testing() {
+async function notion_get_open_time_slots() {
     const response = await fetch('https://notion-demo3.vercel.app/api/notion_fetch');
     const data = await response.json();
     // results = data["results"];
@@ -28,16 +28,17 @@ async function notion_testing() {
 }
 
 
-async function fetchTimes() {
+async function notion_get_open_time_slots() {
     if (cachedTimes) return cachedTimes;
 
     try {
-        await notion_testing();
+        await notion_get_times();
         const response = await fetch(sheet_url);
         const json = await response.json();
     
 
         const data = json.bookings
+        console.log(data);
             .filter(row => row.status === "Open")
             .map(row => ({
                 date: row.date,
