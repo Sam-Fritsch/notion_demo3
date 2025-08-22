@@ -22,7 +22,6 @@ let cachedTimes = null;
 
 function notion_testing() {
     fetch('https://notion-demo3.vercel.app/api/notion_fetch')
-  .then(res => res.json())
   .then(data => console.log(data));
 }
 
