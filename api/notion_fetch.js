@@ -45,16 +45,16 @@ export default async function handler(req, res) {
     const length_slots = results.length;
     const slots_cleaned = [];
 
-    for (let i = 0; i < 1; i++) {
-      const slot = results[i]["properties"];
-      const property_length = slot.length;
-      for (let i = 0; i < property_length; i++) {
-        if (slot[i] = "Status") {
-          slots_cleaned.push(slot[i]);
-        }
-      }
-      //slots_cleaned.push(slot);
+    for (let i = 0; i < results.length; i++) {
+      
+      const props = results[i].properties;
+      const statusValue = props.Status.status?.name;
+      slots_cleaned.push(statusValue);
     }
+
+console.log(slots_cleaned);
+// e.g. ["Open", "Open", "Open", ...]
+
 
     res.status(200).json(slots_cleaned);
 
