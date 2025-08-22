@@ -46,7 +46,7 @@ export default async function handler(req, res) {
     const slots_cleaned = [];
 
     for (let i = 0; i < length_slots; i++) {
-      const slot = results[i];
+      const slot = results[i]["properties"];
       slots_cleaned.push(slot);
     }
 
