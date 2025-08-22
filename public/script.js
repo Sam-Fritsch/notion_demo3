@@ -38,7 +38,6 @@ async function notion_get_open_time_slots() {
     
 
         const data = json.bookings
-        console.log(data);
             .filter(row => row.status === "Open")
             .map(row => ({
                 date: row.date,
@@ -50,7 +49,7 @@ async function notion_get_open_time_slots() {
         //     return acc;
         // }, {});
 
-
+        console.log(data);
         let weekGroups = Object.groupBy(data, item => {
             const date = new Date(item.date);
             
