@@ -39,7 +39,11 @@ export default async function handler(req, res) {
     }
 
     const data = await response.json();
-    console.log(data);
+
+    // Instead of console.log(data)
+    console.log(`Fetched ${data.results.length} results`);
+    console.log("Sample result:", JSON.stringify(data.results[0], null, 2));
+
     res.status(200).json(data);
 
   } catch (error) {
