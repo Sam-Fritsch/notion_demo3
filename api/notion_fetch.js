@@ -46,10 +46,14 @@ export default async function handler(req, res) {
     const slots_cleaned = [];
 
     for (let i = 0; i < results.length; i++) {
-      
       const props = results[i].properties;
-      const statusValue = props.Status.status?.name;
-      slots_cleaned.push(statusValue);
+
+      // Extract the values safely
+      const status = props.Status.status?.name || null;
+      const date = props.Date.date?.start || null;
+
+      // Push an object with both
+      slots_cleaned.push({ status, date });
     }
 
 console.log(slots_cleaned);
