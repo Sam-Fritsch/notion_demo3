@@ -41,8 +41,14 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     const results = data["results"];
+    const length_slots = results.length;
+    const slots_cleaned = [];
 
-    res.status(200).json(results);
+    for (let i = 0; i < length_slots; i++) {
+      slots_cleaned.push(i);
+    }
+
+    res.status(200).json(slots_cleaned);
 
   } catch (error) {
     console.error('Error fetching Notion:', error);
