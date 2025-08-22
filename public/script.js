@@ -45,7 +45,7 @@ async function fetchTimes() {
         //         time: row.time
         //     }));
 
-        console.log(data);
+    
         let weekGroups = Object.groupBy(data, item => {
             const date = new Date(item.date);
             

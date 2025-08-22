@@ -73,6 +73,7 @@ export default async function handler(req, res) {
         }));
 
 
+// Generate the API response
     res.status(200).json(filtered_slots);
 
   } catch (error) {
