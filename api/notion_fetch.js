@@ -50,10 +50,10 @@ export default async function handler(req, res) {
       const property_length = slot.length;
       for (let i = 0; i < property_length; i++) {
         if (slot[i] = "Status") {
-          slots_cleaned.slot[i];
+          slots_cleaned.push(slot[i]);
         }
       }
-      slots_cleaned.push(slot);
+      //slots_cleaned.push(slot);
     }
 
     res.status(200).json(slots_cleaned);
