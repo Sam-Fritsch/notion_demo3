@@ -28,7 +28,7 @@ async function notion_get_open_time_slots() {
 }
 
 
-async function notion_get_open_time_slots() {
+async function fetchTimes() {
     if (cachedTimes) return cachedTimes;
 
     try {
@@ -50,7 +50,6 @@ async function notion_get_open_time_slots() {
         // }, {});
 
         console.log(data);
-
         let weekGroups = Object.groupBy(data, item => {
             const date = new Date(item.date);
             
