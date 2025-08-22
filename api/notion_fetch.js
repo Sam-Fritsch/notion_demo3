@@ -40,11 +40,9 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    // Instead of console.log(data)
-    console.log(`Fetched ${data.results.length} results`);
-    console.log("Sample result:", JSON.stringify(data.results[0], null, 2));
+    const results = data["results"];
 
-    res.status(200).json(data);
+    res.status(200).json(results);
 
   } catch (error) {
     console.error('Error fetching Notion:', error);
