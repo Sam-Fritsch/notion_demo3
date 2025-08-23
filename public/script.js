@@ -33,7 +33,7 @@ async function fetchTimes() {
     if (cachedTimes) return cachedTimes;
 
     try {
-        await notion_get_open_time_slots();
+        // await notion_get_open_time_slots();
         const response = await fetch(sheet_url);
         const data = await response.json();
     
@@ -136,6 +136,7 @@ async function toggle_calendar(event) {
                     
                     dateSlots.forEach(slot => {
                         timesList += `<li><button class="time-slot-button"
+                            data-pageid="${slot.pageid}"
                             data-time="${slot.time}"
                             data-date="${date}"
                             >${slot.time}</button></li>`;
@@ -207,6 +208,7 @@ function display_form(event, date, time, appointmentType) {
     const formArea = box.querySelector('.time-zone-label');
     const selectedTime = time;
     const selectedDate = date;
+    const pageId = button.dataset.pageid;
     formArea.innerHTML = `
         <h2>Book Your Appointment</h2>
         <h5>${appointmentType}</h5>
@@ -218,6 +220,7 @@ function display_form(event, date, time, appointmentType) {
                 data-selectedDate="${selectedDate}"
                 data-selectedTime="${selectedTime}"
                 data-appointmentType="${appointmentType}"
+                data-pageId="${pageId}"
             >
                 <label>
                     <span class="required-icon">*</span>
@@ -260,6 +263,8 @@ document.addEventListener("submit", function(e) {
     const appointmentType = form.dataset.appointmenttype;
     const selectedTime = form.dataset.selectedtime;
     const selectedDate = form.dataset.selecteddate;
+    const pageId = form.dataset.pageid;
+
     const firstName = data["firstName"];
     const lastName = data["lastName"];
     const phone = data["phone"];
