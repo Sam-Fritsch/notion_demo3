@@ -51,6 +51,7 @@ export default async function handler(req, res) {
 
     for (let i = 0; i < results.length; i++) {
       const props = results[i].properties;
+      const pageId = results[i].id;
 
       const status = props.Status.status?.name || null;
       const date = props.Date.date?.start || null;
@@ -61,7 +62,7 @@ export default async function handler(req, res) {
       const email = props.Email?.email || null;
       const phone = props.Phone?.phone_number || null;
 
-      slots_cleaned.push({status, date, time, service, firstName, lastName, email, phone});
+      slots_cleaned.push({pageId, status, date, time, service, firstName, lastName, email, phone});
     }
 
 // Only return open time slots
