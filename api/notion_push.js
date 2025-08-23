@@ -64,7 +64,7 @@ export default async function handler(req, res) {
         };
  
 
-      const response = await fetch(`https://api.notion.com/v1/pages/`, {
+    const response = await fetch(`https://api.notion.com/v1/pages/`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
@@ -72,9 +72,11 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ 
-        parent: {database_id: ${process.env.NOTION_APPTS_DB_ID}},
-            properties })
+        parent: { database_id: process.env.NOTION_APPTS_DB_ID },
+        properties
+      })
     });
+
 
     if (!response.ok) {
       const text = await response.text();
