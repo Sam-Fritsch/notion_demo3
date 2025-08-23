@@ -252,6 +252,8 @@ document.addEventListener("click", function(e) {
         const time = e.target.dataset.time;
         const date = e.target.dataset.date;
         const appointmentType = box.querySelector('.appointment-type-name').textContent;
+        const duration = box.querySelector('.duration').textContent;
+        const price = box.querySelector('.price').textContent;
         display_form(e, date, time, appointmentType);
     }
 });
