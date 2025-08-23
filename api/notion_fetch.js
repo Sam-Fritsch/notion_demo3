@@ -69,6 +69,7 @@ export default async function handler(req, res) {
       const filtered_slots = slots_cleaned
         .filter(slot => slot.status === 'Open')
         .map(slot => ({
+          pageid: slot.pageId,
           date: slot.date,
           time: slot.time
         }));
