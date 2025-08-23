@@ -39,7 +39,7 @@ export default async function handler(req, res) {
             "email": email || ""
         },
         "Status": {
-            "select": { "name": status || "" }
+            "status": { "name": status || "" }
         },
         "Service": {
             "rich_text": [{ "text": { "content": appointmentType || "" } }]
