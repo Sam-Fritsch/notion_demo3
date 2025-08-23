@@ -269,7 +269,7 @@ document.addEventListener("submit", function(e) {
     const lastName = data["lastName"];
     const phone = data["phone"];
     const email = data["email"];
-    // send_to_gs(appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
+    send_to_gs(appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
     display_thank_you(firstName, lastName, selectedDate, selectedTime);
 });
 
@@ -287,31 +287,40 @@ function display_thank_you(firstName, lastName, selectedDate, selectedTime){
         `;
 }
 
-function send_to_gs(appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email){
-    let url = 'https://api.sheety.co/503cd683d77f4feeb101a928a19c01b6/appointmentTracker/bookings/2';
-    let body = {
-        booking: {
-            "service": appointmentType,
-            "date": selectedDate,
-            "time": selectedTime,
-            "firstName": firstName,
-            "lastName": lastName,
-            "phone": phone,
-            "email": email,
-            "status": "Booked"
-        }
-    }
-    console.log(body);
-    fetch(url, {
-        method: 'PUT',
+function send_to_gs(pageId, appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email) {
+    const body = {
+        pageId,
+        firstName,
+        lastName,
+        phone,
+        email,
+        status: "Booked",
+        appointmentType
+    };
+
+    console.log("Sending booking to Notion:", body);
+
+    fetch("/api/notion_push", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(body)
     })
-    .then((response) => response.json())
-    .then(json => {
-        console.log(json.booking);
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(`Server error: ${text}`); });
+        }
+        return response.json();
+    })
+    .then(result => {
+        console.log("Notion update result:", result);
+   
+    })
+    .catch(err => {
+        console.error("Error sending to Notion:", err);
+        alert("Error booking appointment. Please try again.");
     });
 }
+
 
