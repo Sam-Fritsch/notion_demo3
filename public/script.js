@@ -269,7 +269,7 @@ document.addEventListener("submit", function(e) {
     const lastName = data["lastName"];
     const phone = data["phone"];
     const email = data["email"];
-    send_to_gs(appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
+    send_to_gs(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
     display_thank_you(firstName, lastName, selectedDate, selectedTime);
 });
 
