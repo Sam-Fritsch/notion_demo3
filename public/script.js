@@ -36,7 +36,6 @@ async function fetchTimes() {
         // await notion_get_open_time_slots();
         const response = await fetch(sheet_url);
         const data = await response.json();
-        console.log(data);
     
 
         // const data = json.bookings
@@ -203,7 +202,7 @@ document.querySelectorAll('.book-button').forEach(button => {
 });
 
 
-function display_form(event, date, time, appointmentType) {
+function display_form(event, date, time, appointmentType, duration) {
     const button = event.target;
     const box = button.closest('.box_css');
     const formArea = box.querySelector('.time-zone-label');
@@ -222,6 +221,7 @@ function display_form(event, date, time, appointmentType) {
                 data-selectedTime="${selectedTime}"
                 data-appointmentType="${appointmentType}"
                 data-pageId="${pageId}"
+                data-duration="${duration}"
             >
                 <label>
                     <span class="required-icon">*</span>
@@ -256,11 +256,38 @@ document.addEventListener("click", function(e) {
         const appointmentType = appointmentTypeElem.textContent;
         const duration = appointmentTypeElem.dataset.duration;
         const price = appointmentTypeElem.dataset.price;
-        console.log(duration);
-        console.log(price);
-        display_form(e, date, time, appointmentType);
+        display_form(e, date, time, appointmentType, duration);
     }
 });
+
+function calculateEndTime(selectedTime, duration) {
+    const minutesToAdd = parseInt(duration, 10);
+    if (isNaN(minutesToAdd)) return selectedTime;
+
+    const timeParts = selectedTime.match(/(\d+):(\d+)\s*(AM|PM)?/i);
+    if (!timeParts) return selectedTime;
+
+    let hours = parseInt(timeParts[1], 10);
+    const minutes = parseInt(timeParts[2], 10);
+    const ampm = timeParts[3];
+
+    if (ampm) {
+        if (ampm.toUpperCase() === "PM" && hours < 12) hours += 12;
+        if (ampm.toUpperCase() === "AM" && hours === 12) hours = 0;
+    }
+
+    const date = new Date();
+    date.setHours(hours, minutes, 0, 0);
+    date.setMinutes(date.getMinutes() + minutesToAdd);
+
+    const endHours = date.getHours() % 12 || 12;
+    const endMinutes = date.getMinutes().toString().padStart(2, "0");
+    const endAmPm = date.getHours() >= 12 ? "PM" : "AM";
+
+    return `${endHours}:${endMinutes} ${endAmPm}`;
+}
+
+
 
 document.addEventListener("submit", function(e) {
     e.preventDefault(); 
@@ -269,12 +296,15 @@ document.addEventListener("submit", function(e) {
     const appointmentType = form.dataset.appointmenttype;
     const selectedTime = form.dataset.selectedtime;
     const selectedDate = form.dataset.selecteddate;
+    const duration = form.dataset.duration;
+    const endTime = calculateEndTime(selectedTime, duration);
     const pageId = form.dataset.pageid;
 
     const firstName = data["firstName"];
     const lastName = data["lastName"];
     const phone = data["phone"];
     const email = data["email"];
+    notion_add_appointment(firstName, lastName, phone, email, appointmentType, selectedDate, selectedTime, endTime);
     update_notion(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
     display_thank_you(firstName, lastName, selectedDate, selectedTime);
 });
@@ -293,6 +323,55 @@ function display_thank_you(firstName, lastName, selectedDate, selectedTime){
         `;
 }
 
+
+
+
+
+function notion_add_appointment(firstName, lastName, phone, email, appointmentType, date, startTime, endTime) {
+    const body = {
+        firstName, 
+        lastName, 
+        phone, 
+        email, 
+        status: "Scheduled", 
+        appointmentType, 
+        date, 
+        startTime, 
+        endTime
+    };
+
+    console.log("Sending booking to Notion:", body);
+
+    fetch("https://notion-demo3.vercel.app/api/notion_push", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(`Server error: ${text}`); });
+        }
+        return response.json();
+    })
+    .then(result => {
+        console.log("Notion update result:", result);
+   
+    })
+    .catch(err => {
+        console.error("Error sending to Notion:", err);
+        alert("Error booking appointment. Please try again.");
+    });
+}
+
+
+
+
+
+
+
+
 function update_notion(pageId, appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email) {
     const body = {
         pageId,
@@ -303,8 +382,6 @@ function update_notion(pageId, appointmentType, selectedDate, selectedTime, firs
         status: "Booked",
         appointmentType
     };
-
-    console.log("Sending booking to Notion:", body);
 
     fetch("https://notion-demo3.vercel.app/api/notion_update", {
         method: "POST",
