@@ -12,14 +12,14 @@ export default async function handler(req, res) {
   }
 
   // Early check for environment variables
-  if (!process.env.NOTION_API_KEY || !process.env.NOTION_DB_ID) {
+  if (!process.env.NOTION_API_KEY || !process.env.NOTION_SLOTS_DB_ID) {
     res.status(500).json({ error: 'Missing Notion environment variables' });
     return;
   }
 
   try {
     const response = await fetch(
-      `https://api.notion.com/v1/databases/${process.env.NOTION_DB_ID}/query`,
+      `https://api.notion.com/v1/databases/${process.env.NOTION_SLOTS_DB_ID}/query`,
       {
         method: 'POST',
         headers: {

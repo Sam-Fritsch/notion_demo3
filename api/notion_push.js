@@ -62,10 +62,9 @@ export default async function handler(req, res) {
             "rich_text": [{ "text": { "content": endTime } }]
         }
         };
+ 
 
-
-    // PATCH request to Notion
-    const response = await fetch(`https://api.notion.com/v1/pages/`, {
+      const response = await fetch(`https://api.notion.com/v1/pages/`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
@@ -73,7 +72,7 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ 
-        parent: {database_id: process.env.NOTION_APPTS_DB_ID},
+        parent: {database_id: "25754953006480cda938c9723a7c34a1"},
             properties })
     });
 
