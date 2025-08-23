@@ -36,6 +36,7 @@ async function fetchTimes() {
         // await notion_get_open_time_slots();
         const response = await fetch(sheet_url);
         const data = await response.json();
+        console.log(data);
     
 
         // const data = json.bookings

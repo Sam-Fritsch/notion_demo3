@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
-
+console.log("DEBUG NOTION_API_KEY:", process.env.NOTION_API_KEY);
+console.log("DEBUG NOTION_SLOTS_DB_ID:", process.env.NOTION_SLOTS_DB_ID);
 export default async function handler(req, res) {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*'); 
