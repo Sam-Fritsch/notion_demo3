@@ -251,9 +251,12 @@ document.addEventListener("click", function(e) {
         const box = e.target.closest('.box_css');
         const time = e.target.dataset.time;
         const date = e.target.dataset.date;
-        const appointmentType = box.querySelector('.appointment-type-name').textContent;
-        const duration = box.querySelector('.duration').textContent;
-        const price = box.querySelector('.price').textContent;
+        const appointmentTypeElem = box.querySelector('.appointment-type-name');
+        const appointmentType = appointmentTypeElem.textContent;
+        const duration = appointmentTypeElem.dataset.duration;
+        const price = appointmentTypeElem.dataset.price;
+        console.log(duration);
+        console.log(price);
         display_form(e, date, time, appointmentType);
     }
 });
