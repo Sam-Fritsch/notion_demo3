@@ -300,7 +300,7 @@ function send_to_gs(pageId, appointmentType, selectedDate, selectedTime, firstNa
 
     console.log("Sending booking to Notion:", body);
 
-    fetch("/api/notion_push", {
+    fetch("https://notion-demo3.vercel.app/api/notion_push", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
