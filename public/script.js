@@ -274,7 +274,7 @@ document.addEventListener("submit", function(e) {
     const lastName = data["lastName"];
     const phone = data["phone"];
     const email = data["email"];
-    send_to_gs(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
+    update_notion(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
     display_thank_you(firstName, lastName, selectedDate, selectedTime);
 });
 
@@ -292,7 +292,7 @@ function display_thank_you(firstName, lastName, selectedDate, selectedTime){
         `;
 }
 
-function send_to_gs(pageId, appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email) {
+function update_notion(pageId, appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email) {
     const body = {
         pageId,
         firstName,
@@ -305,7 +305,7 @@ function send_to_gs(pageId, appointmentType, selectedDate, selectedTime, firstNa
 
     console.log("Sending booking to Notion:", body);
 
-    fetch("https://notion-demo3.vercel.app/api/notion_push", {
+    fetch("https://notion-demo3.vercel.app/api/notion_update", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
