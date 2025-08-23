@@ -32,7 +32,7 @@ export default async function handler(req, res) {
     // --- Construct properties for Notion page ---
     const properties = {
       "Client First Name": {
-        "rich_text": [{ "text": { "content": firstName || "" } }]
+        "title": [{ "text": { "content": firstName || "" } }]
       },
       "Client Last Name": {
         "rich_text": [{ "text": { "content": lastName || "" } }]
