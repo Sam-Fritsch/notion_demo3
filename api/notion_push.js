@@ -30,6 +30,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Function converts the full time slot time to central time, as Notion uses UTC by default //
       function to24HourWithOffset(time, offset="-05:00") {
           let [t, modifier] = time.split(" ");
           let [h, m] = t.split(":").map(Number);
