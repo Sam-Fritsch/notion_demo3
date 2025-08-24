@@ -8,14 +8,6 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-
-  function to24HourWithOffset(time, offset="-05:00") {
-  let [t, modifier] = time.split(" ");
-  let [h, m] = t.split(":").map(Number);
-  if (modifier === "PM" && h < 12) h += 12;
-  if (modifier === "AM" && h === 12) h = 0;
-  return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:00${offset}`;
-}
   // --- Handle preflight OPTIONS request ---
   if (req.method === 'OPTIONS') {
     res.status(204).end(); // 204 No Content
@@ -38,6 +30,13 @@ export default async function handler(req, res) {
   }
 
   try {
+      function to24HourWithOffset(time, offset="-05:00") {
+          let [t, modifier] = time.split(" ");
+          let [h, m] = t.split(":").map(Number);
+          if (modifier === "PM" && h < 12) h += 12;
+          if (modifier === "AM" && h === 12) h = 0;
+          return `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:00${offset}`;
+        };
     // --- Construct properties for Notion page ---
     const properties = {
       "Client First Name": {
