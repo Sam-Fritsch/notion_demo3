@@ -340,7 +340,7 @@ function notion_add_appointment(firstName, lastName, phone, email, appointmentTy
         endTime
     };
 
-    console.log("Sending booking to Notion:", body);
+    console.log("Adding net new booking to Notion:", body);
 
     fetch("https://notion-demo3.vercel.app/api/notion_push", {
         method: "POST",
