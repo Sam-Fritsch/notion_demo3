@@ -50,7 +50,7 @@ export default async function handler(req, res) {
         }
       },
       "Date": { 
-        "date": { "start": date.split("T")[0] } 
+        "date": { "start": `${date}T12:00:00` }  // force midday
       },
       "Start Time": {
         "rich_text": [{ "text": { "content": startTime } }]
