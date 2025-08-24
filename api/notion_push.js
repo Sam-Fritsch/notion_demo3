@@ -1,5 +1,4 @@
 import fetch from 'node-fetch';
-import { zonedTimeToUtc } from 'date-fns-tz';
 
 
 export default async function handler(req, res) {
@@ -23,10 +22,7 @@ export default async function handler(req, res) {
 
   // --- Destructure incoming data ---
   const { firstName, lastName, phone, email, status, appointmentType, date, startTime, endTime } = req.body;
-  
-  // Convert times to central time zone by default //
-  const startUtc = zonedTimeToUtc(`${date} ${startTime}`, timeZone);
-  const endUtc   = zonedTimeToUtc(`${date} ${endTime}`, timeZone);
+
   // --- Validate env variables ---
   if (!process.env.NOTION_API_KEY || !process.env.NOTION_APPTS_DB_ID) {
     res.status(500).json({ error: 'Missing Notion API key or database ID' });
@@ -48,12 +44,25 @@ export default async function handler(req, res) {
       "Service Type": {
         "rich_text": [{ "text": { "content": appointmentType || "" } }]
       },
-      "Time Slot": {
-        "date": {
-          "start": startUtc.toISOString(),
-          "end": endUtc.toISOString()
-        }
-      },
+"Time Slot": {
+  "date": {
+    "start": `${date}T${(() => {
+      let [time, modifier] = startTime.split(" ");
+      let [hours, minutes] = time.split(":").map(Number);
+      if (modifier === "PM" && hours < 12) hours += 12;
+      if (modifier === "AM" && hours === 12) hours = 0;
+      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:00`;
+    })()}`,
+    "end": `${date}T${(() => {
+      let [time, modifier] = endTime.split(" ");
+      let [hours, minutes] = time.split(":").map(Number);
+      if (modifier === "PM" && hours < 12) hours += 12;
+      if (modifier === "AM" && hours === 12) hours = 0;
+      return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:00`;
+    })()}`
+  }
+},
+
     "Date": 
       { "date": { "start": date } 
     },
