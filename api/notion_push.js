@@ -45,8 +45,8 @@ export default async function handler(req, res) {
       },
       "Time Slot": {
         "date": {
-          "start": new Date(`${date} ${startTime}`).toISOString(),
-          "end": new Date(`${date} ${endTime}`).toISOString()
+          "start": `${date}T${convertTo24Hour(startTime)}`,
+          "end": `${date}T${convertTo24Hour(endTime)}`
         }
       },
       "Date": { 
