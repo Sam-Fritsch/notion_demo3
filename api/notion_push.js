@@ -45,12 +45,12 @@ export default async function handler(req, res) {
       },
       "Time Slot": {
         "date": {
-          "start": `${date}T${convertTo24Hour(startTime)}`,
-          "end": `${date}T${convertTo24Hour(endTime)}`
+          "start": new Date(`${date} ${startTime}`).toISOString(),
+          "end": new Date(`${date} ${endTime}`).toISOString()
         }
       },
       "Date": { 
-        "date": { "start": `${date}T12:00:00` }  // force midday
+        "date": { "start": date.split("T")[0] } 
       },
       "Start Time": {
         "rich_text": [{ "text": { "content": startTime } }]
