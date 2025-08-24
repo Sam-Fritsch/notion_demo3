@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     start: `${date}T${to24HourWithOffset(startTime)}`,
     end:   `${date}T${to24HourWithOffset(endTime)}`
   }
-}
+},
     "Date": 
       { "date": { "start": date } 
     },
