@@ -43,12 +43,24 @@ export default async function handler(req, res) {
       "Service Type": {
         "rich_text": [{ "text": { "content": appointmentType || "" } }]
       },
-      "Time Slot": {
-        "date": {
-          "start": new Date(`${date} ${startTime}`).toISOString(),
-          "end": new Date(`${date} ${endTime}`).toISOString()
-        }
-      },
+"Time Slot": {
+  "date": {
+    "start": `${date}T${(() => {
+      let [time, modifier] = startTime.split(" ");
+      let [hours, minutes] = time.split(":").map(Number);
+      if (modifier === "PM" && hours < 12) hours += 12;
+      if (modifier === "AM" && hours === 12) hours = 0;
+      return `${String(hours).padStart(2, "0")}:${minutes}:00`;
+    })()}`,
+    "end": `${date}T${(() => {
+      let [time, modifier] = endTime.split(" ");
+      let [hours, minutes] = time.split(":").map(Number);
+      if (modifier === "PM" && hours < 12) hours += 12;
+      if (modifier === "AM" && hours === 12) hours = 0;
+      return `${String(hours).padStart(2, "0")}:${minutes}:00`;
+    })()}`
+  }
+},
     "Date": 
       { "date": { "start": date } 
     },
