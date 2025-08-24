@@ -49,9 +49,9 @@ export default async function handler(req, res) {
           "end": new Date(`${date} ${endTime}`).toISOString()
         }
       },
-      "Date": { 
-        "date": { "start": date.split("T")[0] } 
-      },
+    "Date": 
+      { "date": { "start": date } 
+    },
       "Start Time": {
         "rich_text": [{ "text": { "content": startTime } }]
       },
