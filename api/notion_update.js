@@ -27,19 +27,19 @@ export default async function handler(req, res) {
   try {
     const properties = {
         "First Name": {
-            "rich_text": [{ "text": { "content": firstName || "" } }]
+            "rich_text": [{ "text": { "content": firstName || null } }]
         },
         "Last Name": {
-            "rich_text": [{ "text": { "content": lastName || "" } }]
+            "rich_text": [{ "text": { "content": lastName || null } }]
         },
         "Phone": {
-            "phone_number": phone || ""
+            "phone_number": phone || null
         },
         "Email": {
-            "email": email || ""
+            "email": email || null
         },
         "Status": {
-            "status": { "name": status || "" }
+            "status": { "name": status || null }
         },
         "Service": {
             "rich_text": [{ "text": { "content": appointmentType || "" } }]

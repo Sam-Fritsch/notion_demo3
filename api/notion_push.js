@@ -41,16 +41,16 @@ export default async function handler(req, res) {
     // --- Construct properties for Notion page ---
     const properties = {
       "Client First Name": {
-        "title": [{ "text": { "content": firstName || "" } }]
+        "title": [{ "text": { "content": firstName || null } }]
       },
       "Client Last Name": {
-        "rich_text": [{ "text": { "content": lastName || "" } }]
+        "rich_text": [{ "text": { "content": lastName || null } }]
       },
-      "Phone": { "phone_number": phone || "" },
-      "Email": { "email": email || "" },
-      "Status": { "status": { "name": status || "" } },
+      "Phone": { "phone_number": phone || null },
+      "Email": { "email": email || null },
+      "Status": { "status": { "name": status || null } },
       "Service Type": {
-        "rich_text": [{ "text": { "content": appointmentType || "" } }]
+        "rich_text": [{ "text": { "content": appointmentType || null } }]
       },
  "Time Slot": {
   "date": {
