@@ -45,7 +45,6 @@ async function fetchTimes() {
         //         time: row.time
         //     }));
 
-    
         let weekGroups = Object.groupBy(data, item => {
             const date = new Date(item.date);
             
@@ -59,7 +58,7 @@ async function fetchTimes() {
             return sunday.toISOString().split('T')[0];
         });
         
-        // console.log(weekGroups)
+
         let sortedWeekGroups = Object.fromEntries(
             Object.entries(weekGroups).sort(([a], [b]) => new Date(a) - new Date(b))
             );
