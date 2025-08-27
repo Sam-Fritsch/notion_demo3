@@ -46,7 +46,8 @@ async function fetchTimes() {
         //     }));
 
         let weekGroups = Object.groupBy(data, item => {
-            const date = new Date(item.date);
+            const date = new Date(item.date + " 00:00:00");
+
             
             const dayOfWeek = date.getDay();
             
