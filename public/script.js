@@ -307,6 +307,7 @@ document.addEventListener("submit", function(e) {
     notion_add_appointment(firstName, lastName, phone, email, appointmentType, selectedDate, selectedTime, endTime);
     update_notion(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
     display_thank_you(firstName, lastName, selectedDate, selectedTime);
+    cachedTimes = null;
 });
 
 
