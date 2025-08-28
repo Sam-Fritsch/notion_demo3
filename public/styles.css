@@ -18,6 +18,11 @@ img.logo{
     min-height: 100vh; /* Ensures it's at least full viewport height */
 }
 
+.main-wrapper {
+    width: 1000px;
+    margin: 0 auto;
+}
+
 img.leaf_top_left {
     position: absolute;
     left: 0;
@@ -332,7 +337,20 @@ input, select {
 }
 
 
+@media only screen and (max-width: 600px) {
 
+    .main-wrapper {
+        width: 100%; 
+    }
+}
+
+
+@media only screen and (min-width: 601px) {
+
+    .main-wrapper {
+        width: 100%; 
+    }
+}
 
 
 
