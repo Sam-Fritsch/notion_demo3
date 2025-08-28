@@ -134,7 +134,7 @@ h2{
 
 .box_css {
     padding: 1.2rem;
-    width: 500px;     
+    width: 700px;     
     max-width: 100%;     
     margin: 0 auto;     
     box-sizing: border-box;
@@ -240,6 +240,14 @@ button.book-button{
     justify-content: center;
     text-align: center;
     gap: 10px;
+    flex-wrap: wrap;
+}
+
+.time-slots > li {
+    flex: 0 0 120px;
+    width: 120px; /* Explicitly set width to match flex-basis */
+    margin-bottom: 15px;
+    /* Remove min-width: 100px as it's redundant */
 }
 
 .specific-times {
@@ -249,6 +257,9 @@ button.book-button{
     margin-top: 0.5rem;
 }
 
+.specific-times li {
+    margin-bottom: 5px;
+}
 /* .specific-times li {
     border: 1px solid black;
     border-radius: 2px;
@@ -351,16 +362,3 @@ input, select {
         width: 100%; 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
