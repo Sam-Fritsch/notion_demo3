@@ -319,7 +319,7 @@ function display_thank_you(firstName, lastName, selectedDate, selectedTime){
 
     formArea.innerHTML = `
         <h4>Thank you for booking with Aether By S!</h4>
-        <p>You're appoiontment is set for ${selectedDate} at ${selectedTime}</p>
+        <p>You're appointment is set for ${selectedDate} at ${selectedTime}</p>
         <p>We have received your booking and are excited to see you soon!</p>
         `;
 }
