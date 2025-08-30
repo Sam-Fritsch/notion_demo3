@@ -13,6 +13,16 @@ img.logo{
 }
 
 
+
+
+img.service-image{
+    background-color: black;
+    width: 200px;
+    height: 200px;
+}
+
+
+
 .main-page {
     position: relative;
     min-height: 100vh; /* Ensures it's at least full viewport height */
@@ -125,6 +135,7 @@ h2{
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     width: 90%;
     max-width: 850px; 
+    display: flex;
 }
 
 .select-item:hover {
@@ -138,6 +149,7 @@ h2{
     max-width: 100%;     
     margin: 0 auto;     
     box-sizing: border-box;
+    text-align: left;
 }
 
 .appointment-type-name {
