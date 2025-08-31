@@ -66,6 +66,9 @@ export default async function handler(req, res) {
       },
       "End Time": {
         "rich_text": [{ "text": { "content": endTime } }]
+      },
+      "reservation_code": {
+        "title": [{ "text": { "content": reservation_code || null } }]
       }
     };
 
