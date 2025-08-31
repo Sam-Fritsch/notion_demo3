@@ -103,7 +103,10 @@ const appts_response = await fetch(
     //     appts_results.some(appt => appt.date === slot.date && appt.time === slot.time)
     // );
     const appts_cleaned = appts_results.map(appt => {
-      return appt.properties.Date.date?.start || null;
+      return {
+      date: appt.properties.Date.date?.start || null,
+      startTime: props.Time.rich_text[0]?.plain_text || null
+      };
     });
     console.log(appts_cleaned);
 
