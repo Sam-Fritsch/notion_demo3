@@ -378,6 +378,13 @@ input, select {
 }
 
 
+
+a.cancel-link {
+  color: #C2185B;
+  font-weight: bold;
+}
+
+
 @media only screen and (max-width: 600px) {
 
     .main-wrapper {
