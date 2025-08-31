@@ -76,8 +76,8 @@ async function fetchTimes() {
 
 async function toggle_calendar(event) {
     const button = event.target;
-    const box = button.closest('.box_css');
-    const timezoneDiv = box.querySelector('.time-zone-label');
+    const selectItem = button.closest('.select-item');
+    const timezoneDiv = selectItem.querySelector('.time-zone-label');
 
     if (button.textContent === "BOOK HERE") {
         timezoneDiv.innerHTML = `<div class="loading">Loading available appointments...</div>`;
@@ -204,7 +204,7 @@ document.querySelectorAll('.book-button').forEach(button => {
 
 function display_form(event, date, time, appointmentType, duration) {
     const button = event.target;
-    const box = button.closest('.box_css');
+    const box = button.closest('.select-item');
     const formArea = box.querySelector('.time-zone-label');
     const selectedTime = time;
     const selectedDate = date;
@@ -249,11 +249,14 @@ function display_form(event, date, time, appointmentType, duration) {
 
 document.addEventListener("click", function(e) {
     if (e.target.classList.contains("time-slot-button")) {
-        const box = e.target.closest('.box_css');
         const time = e.target.dataset.time;
         const date = e.target.dataset.date;
-        const appointmentTypeElem = box.querySelector('.appointment-type-name');
-        const appointmentType = appointmentTypeElem.textContent;
+        const selectItem = e.target.closest('.select-item');
+        const flexContainer = selectItem.querySelector('.flex-container');
+        const boxCss = flexContainer.querySelector('.box_css');
+        const appointmentTypeElem = boxCss.querySelector('.appointment-type-name');
+        console.log(appointmentTypeElem);
+        const appointmentType = appointmentTypeElem.textContent.trim();
         const duration = appointmentTypeElem.dataset.duration;
         const price = appointmentTypeElem.dataset.price;
         display_form(e, date, time, appointmentType, duration);
@@ -332,7 +335,7 @@ document.addEventListener("submit", function(e) {
 
 function display_thank_you(firstName, lastName, selectedDate, selectedTime, reservation_code){
     const button = event.target;
-    const box = button.closest('.box_css');
+    const box = button.closest('.select-item');
     const formArea = box.querySelector('.time-zone-label');
 
     formArea.innerHTML = `

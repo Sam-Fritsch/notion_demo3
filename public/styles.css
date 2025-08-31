@@ -126,6 +126,18 @@ h2{
     margin: 2rem auto;
 }
 
+.flex-container {
+    /* background-color: rgb(255, 239, 239);
+    margin: 0 auto 1.5rem auto;  
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 90%;
+    max-width: 850px;  */
+    width: 100%;
+    max-width: 850px; 
+    display: flex;
+}
 
 .select-item {
     background-color: rgb(255, 239, 239);
@@ -136,7 +148,10 @@ h2{
     width: 90%;
     max-width: 850px; 
     display: flex;
+    flex-direction: column;  /* 👈 stack children vertically */
+    align-items: center;     /* 👈 center content horizontally */
 }
+
 
 .select-item:hover {
     transform: translateY(-3px);
@@ -195,17 +210,20 @@ h2{
     font-size: 50px;
 }
 
-button.book-button{
+button.book-button {
     background-color: rgb(14, 14, 14);
     color: rgb(255, 255, 255);
-    border-color: transparent;
+    border: none;
     border-radius: 5px;
     box-sizing: border-box;
-    display: inline-block;
     cursor: pointer;
     text-align: center;
     font-weight: 600;
     font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
