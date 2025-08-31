@@ -318,9 +318,8 @@ document.addEventListener("submit", function(e) {
     const email = data["email"];
 
     const reservation_code = generate_res_code(7)
-    console.log(reservation_code)
 
-    notion_add_appointment(firstName, lastName, phone, email, appointmentType, selectedDate, selectedTime, endTime);
+    notion_add_appointment(firstName, lastName, phone, email, appointmentType, selectedDate, selectedTime, endTime, reservation_code);
     update_notion(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
     display_thank_you(firstName, lastName, selectedDate, selectedTime, reservation_code);
     cachedTimes = null;
