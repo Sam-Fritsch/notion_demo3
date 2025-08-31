@@ -135,21 +135,6 @@ const appts_response = await fetch(
 
 
 
-    // console.log(filtered_appts);
-
-
-
-
-    
-
-
-    // const final_results = function(filtered_slots, appts_results) {
-    //   let final_slots = filtered_slots.map(function(slot){
-    //     appts_results(function(acc))
-    //   });
-
-    //   return final_slots;
-    // }
 
 
 
