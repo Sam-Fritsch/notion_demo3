@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   }
 
   // Early check for environment variables
-  if (!process.env.NOTION_API_KEY || !process.env.NOTION_SLOTS_DB_ID) {
+  if (!process.env.NOTION_API_KEY || !process.env.NOTION_SLOTS_DB_ID || !process.env.NOTION_APPTS_DB_ID) {
     res.status(500).json({ error: 'Missing Notion environment variables' });
     return;
   }
@@ -74,12 +74,35 @@ export default async function handler(req, res) {
         }));
 
 
-// Generate the API response
-    res.status(200).json(filtered_slots);
+      
+// Get existing appointment times to cross compare with open slots //
+const apptsRes = await fetch(
+      `https://api.notion.com/v1/databases/${process.env.NOTION_APPTS_DB_ID}/query`,
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
+          'Notion-Version': '2022-06-28',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({})
+      }
+    );
+
+    if (!apptsRes.ok) {
+      const text = await apptsRes.text();
+      throw new Error(`Notion API error (appointments): ${apptsRes.status} ${text}`);
+    }
+
+    const apptsData = await apptsRes.json();
+    const apptsResults = apptsData.results;
+    console.log("Appointments:", apptsResults);
+
+    // Right now we’re just returning the open slots
+    res.status(200).json(filteredSlots);
 
   } catch (error) {
     console.error('Error fetching Notion:', error);
     res.status(500).json({ error: error.message });
   }
 }
-
