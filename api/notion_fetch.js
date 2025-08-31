@@ -102,14 +102,18 @@ const appts_response = await fetch(
     // const final_times = filtered_slots.filter(slot => 
     //     appts_results.some(appt => appt.date === slot.date && appt.time === slot.time)
     // );
-    const appts_cleaned = appts_results.map(appt => {
-      return {
+    const appts_cleaned = appts_results
+      .filter(appt => {
+        const status = appt.properties.Status?.status?.name;
+        return status === 'Scheduled' || status === 'In Progress';
+      })
+      .map(appt => ({
         date: appt.properties.Date.date?.start || null,
         startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null
-      };
-    });
+      }));
 
     console.log(appts_cleaned);
+
 
 
     // console.log(filtered_appts);
