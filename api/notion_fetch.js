@@ -112,7 +112,27 @@ const appts_response = await fetch(
         startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null
       }));
 
-    console.log(filtered_slots);
+    console.log(appts_cleaned);
+
+    function parseDateTime(dateStr, timeStr) {
+      return new Date(`${dateStr} ${timeStr}`);
+    }
+    const HOUR_WINDOW = 3;
+
+    const available_slots = filtered_slots.filter(slot => {
+    const slotTime = parseDateTime(slot.date, slot.time);
+
+    // If any appointment is within ±3 hours, exclude this slot
+    const isBlocked = appts_cleaned.some(appt => {
+    const apptTime = parseDateTime(appt.date, appt.startTime);
+    const diffHours = Math.abs(slotTime - apptTime) / (1000 * 60 * 60); // convert ms to hours
+    return diffHours <= HOUR_WINDOW;
+    });
+
+    return !isBlocked; // keep only if not blocked
+    });
+
+    console.log(available_slots);
 
 
 
