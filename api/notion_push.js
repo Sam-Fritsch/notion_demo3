@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   }
 
   // --- Destructure incoming data ---
-  const { firstName, lastName, phone, email, status, appointmentType, date, startTime, endTime } = req.body;
+  const { firstName, lastName, phone, email, status, appointmentType, date, startTime, endTime, reservation_code} = req.body;
 
   // --- Validate env variables ---
   if (!process.env.NOTION_API_KEY || !process.env.NOTION_APPTS_DB_ID) {
