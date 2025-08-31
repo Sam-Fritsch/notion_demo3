@@ -385,6 +385,21 @@ a.cancel-link {
 }
 
 
+.appointment-adjust {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: rgb(14, 14, 14);
+    text-align: center;
+}
+
+#adjust-required{
+    text-align: center;
+    color: #C2185B;
+    font-style: italic;
+}
+
+
 @media only screen and (max-width: 600px) {
 
     .main-wrapper {
