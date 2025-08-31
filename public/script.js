@@ -338,7 +338,7 @@ function display_thank_you(firstName, lastName, selectedDate, selectedTime, rese
     formArea.innerHTML = `
         <h4>Thank you for booking with Aether By S!</h4>
         <p>Your reservation code is <strong>${reservation_code}</strong>. Please save this or screenshot this code in order to modify your appointment.<p>
-        <p>Your appointment is set for <strong<${selectedDate}</strong> at <strong>${selectedTime}</strong></p>
+        <p>Your appointment is set for <strong>${selectedDate}</strong> at <strong>${selectedTime}</strong></p>
         <p>We have received your booking and are excited to see you soon!</p>
         `;
 }
