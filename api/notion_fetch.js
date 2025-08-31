@@ -76,7 +76,22 @@ export default async function handler(req, res) {
 
       
 // Get existing appointment times to cross compare with open slots //
-const apptsRes = await fetch(
+
+  
+
+
+
+// Generate the API response
+    res.status(200).json(filtered_slots);
+
+  } catch (error) {
+    console.error('Error fetching Notion:', error);
+    res.status(500).json({ error: error.message });
+  }
+}
+
+try {
+    const response = await fetch(
       `https://api.notion.com/v1/databases/${process.env.NOTION_APPTS_DB_ID}/query`,
       {
         method: 'POST',
@@ -89,20 +104,20 @@ const apptsRes = await fetch(
       }
     );
 
-    if (!apptsRes.ok) {
-      const text = await apptsRes.text();
-      throw new Error(`Notion API error (appointments): ${apptsRes.status} ${text}`);
+    // Check for Notion errors
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Notion API error: ${response.status} ${text}`);
     }
 
-    const apptsData = await apptsRes.json();
-    const apptsResults = apptsData.results;
-    console.log("Appointments:", apptsResults);
+    const data = await response.json();
 
-    // Right now we’re just returning the open slots
-    res.status(200).json(filteredSlots);
+    const results = data["results"];
+    console.log(results);
 
-  } catch (error) {
+    const length_slots = results.length;
+    const slots_cleaned = [];
+    } catch (error) {
     console.error('Error fetching Notion:', error);
     res.status(500).json({ error: error.message });
   }
-}
