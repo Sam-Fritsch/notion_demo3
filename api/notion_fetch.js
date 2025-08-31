@@ -104,11 +104,13 @@ const appts_response = await fetch(
     // );
     const appts_cleaned = appts_results.map(appt => {
       return {
-      date: appt.properties.Date.date?.start || null,
-      startTime: props.Time.rich_text[0]?.plain_text || null
+        date: appt.properties.Date.date?.start || null,
+        startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null
       };
     });
+
     console.log(appts_cleaned);
+
 
     // console.log(filtered_appts);
 
