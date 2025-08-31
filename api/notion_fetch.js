@@ -102,14 +102,9 @@ const appts_response = await fetch(
     // const final_times = filtered_slots.filter(slot => 
     //     appts_results.some(appt => appt.date === slot.date && appt.time === slot.time)
     // );
-    const appts_cleaned = appts_results.map(r => {
-      const props = r.properties;
-      return {
-        date: props.Date.date?.start || null,
-        startTime: props.Time.rich_text[0]?.plain_text || null
-      };
+    const appts_cleaned = appts_results.map(appt => {
+      return appt.properties.Date.date?.start || null;
     });
-
     console.log(appts_cleaned);
 
     // console.log(filtered_appts);
