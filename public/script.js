@@ -287,6 +287,18 @@ function calculateEndTime(selectedTime, duration) {
     return `${endHours}:${endMinutes} ${endAmPm}`;
 }
 
+// Use the function below to generate a random reservation code for the client //
+
+function generate_res_code(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
 
 
 document.addEventListener("submit", function(e) {
@@ -299,27 +311,35 @@ document.addEventListener("submit", function(e) {
     const duration = form.dataset.duration;
     const endTime = calculateEndTime(selectedTime, duration);
     const pageId = form.dataset.pageid;
-
+    
     const firstName = data["firstName"];
     const lastName = data["lastName"];
     const phone = data["phone"];
     const email = data["email"];
+
+    const reservation_code = generate_res_code(7)
+    console.log(reservation_code)
+
     notion_add_appointment(firstName, lastName, phone, email, appointmentType, selectedDate, selectedTime, endTime);
     update_notion(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
-    display_thank_you(firstName, lastName, selectedDate, selectedTime);
+    display_thank_you(firstName, lastName, selectedDate, selectedTime, reservation_code);
     cachedTimes = null;
 });
 
 
 
-function display_thank_you(firstName, lastName, selectedDate, selectedTime){
+
+
+
+function display_thank_you(firstName, lastName, selectedDate, selectedTime, reservation_code){
     const button = event.target;
     const box = button.closest('.box_css');
     const formArea = box.querySelector('.time-zone-label');
 
     formArea.innerHTML = `
         <h4>Thank you for booking with Aether By S!</h4>
-        <p>Your appointment is set for ${selectedDate} at ${selectedTime}</p>
+        <p>Your reservation code is <strong>${reservation_code}</strong>. Please save this or screenshot this code in order to modify your appointment.<p>
+        <p>Your appointment is set for <strong<${selectedDate}</strong> at <strong>${selectedTime}</strong></p>
         <p>We have received your booking and are excited to see you soon!</p>
         `;
 }
@@ -328,7 +348,7 @@ function display_thank_you(firstName, lastName, selectedDate, selectedTime){
 
 
 
-function notion_add_appointment(firstName, lastName, phone, email, appointmentType, date, startTime, endTime) {
+function notion_add_appointment(firstName, lastName, phone, email, appointmentType, date, startTime, endTime, reservation_code) {
     const body = {
         firstName, 
         lastName, 
@@ -338,7 +358,8 @@ function notion_add_appointment(firstName, lastName, phone, email, appointmentTy
         appointmentType, 
         date, 
         startTime, 
-        endTime
+        endTime,
+        reservation_code
     };
 
     console.log("Adding net new booking to Notion:", body);
