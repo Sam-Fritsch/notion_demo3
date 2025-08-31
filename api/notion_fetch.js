@@ -102,7 +102,7 @@ const appts_response = await fetch(
     const final_times = filtered_slots.filter(slot => 
         appts_results.some(appt => appt.date === slot.date && appt.time === slot.time)
     );
-    console.log(final_times);
+    console.log(appts_results);
 
 
 
