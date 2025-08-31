@@ -99,8 +99,9 @@ const appts_response = await fetch(
 
     const appts_results = appts_data["results"];
     
-    const final_times = filtered_slots.filter(slot => slot.date > appts_results.date);
-
+    const final_times = filtered_slots.filter(slot => 
+        appts_results.some(appt => appt.date === slot.date && appt.time === slot.time)
+    );
     console.log(final_times);
 
 
