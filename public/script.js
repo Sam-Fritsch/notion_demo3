@@ -255,7 +255,6 @@ document.addEventListener("click", function(e) {
         const flexContainer = selectItem.querySelector('.flex-container');
         const boxCss = flexContainer.querySelector('.box_css');
         const appointmentTypeElem = boxCss.querySelector('.appointment-type-name');
-        console.log(appointmentTypeElem);
         const appointmentType = appointmentTypeElem.textContent.trim();
         const duration = appointmentTypeElem.dataset.duration;
         const price = appointmentTypeElem.dataset.price;

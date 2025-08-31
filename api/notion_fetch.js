@@ -98,8 +98,23 @@ const appts_response = await fetch(
     const appts_data = await appts_response.json();
 
     const appts_results = appts_data["results"];
-    console.log(appts_results);
-  
+    
+    const final_times = filtered_slots.filter(slot => slot.date=== appts_results.date);
+
+    console.log(final_times);
+
+
+
+    
+
+
+    // const final_results = function(filtered_slots, appts_results) {
+    //   let final_slots = filtered_slots.map(function(slot){
+    //     appts_results(function(acc))
+    //   });
+
+    //   return final_slots;
+    // }
 
 
 
