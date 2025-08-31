@@ -112,7 +112,6 @@ const appts_response = await fetch(
         startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null
       }));
 
-    console.log(appts_cleaned);
 
     function parseDateTime(dateStr, timeStr) {
       return new Date(`${dateStr} ${timeStr}`);
@@ -155,7 +154,7 @@ const appts_response = await fetch(
 
 
 // Generate the API response
-    res.status(200).json(filtered_slots);
+    res.status(200).json(available_slots);
 
   } catch (error) {
     console.error('Error fetching Notion:', error);
