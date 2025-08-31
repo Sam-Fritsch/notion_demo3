@@ -112,7 +112,7 @@ const appts_response = await fetch(
         startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null
       }));
 
-    console.log(appts_cleaned);
+    console.log(filtered_slots);
 
 
 
