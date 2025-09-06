@@ -122,26 +122,26 @@ const appts_response = await fetch(
     // const final_times = filtered_slots.filter(slot => 
     //     appts_results.some(appt => appt.date === slot.date && appt.time === slot.time)
     // );
-    const appts_cleaned = appts_results
-      .filter(appt => {
-        const status = appt.properties.Status?.status?.name;
-        return status === 'Scheduled' || status === 'In Progress';
-      })
-      .map(appt => ({
-        date: appt.properties.Date.date?.start || null,
-        startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null,
-        firstName: appt.properties['Client First Name']?.rich_text[0]?.text?.content || null,
-        lastName: appt.properties['Client Last Name']?.rich_text[0]?.text?.content || null,
-        service: appt.properties['Service Type']?.rich_text[0]?.text?.content || null,
-        reservationCode: appt.properties['Reservation Code']?.rich_text[0]?.text?.content || null,
-        pageId: appt.id
-      }));
+    // const appts_cleaned = appts_results
+    //   .filter(appt => {
+    //     const status = appt.properties.Status?.status?.name;
+    //     return status === 'Scheduled' || status === 'In Progress';
+    //   })
+    //   .map(appt => ({
+    //     date: appt.properties.Date.date?.start || null,
+    //     startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null,
+    //     firstName: appt.properties['Client First Name']?.rich_text[0]?.text?.content || null,
+    //     lastName: appt.properties['Client Last Name']?.rich_text[0]?.text?.content || null,
+    //     service: appt.properties['Service Type']?.rich_text[0]?.text?.content || null,
+    //     reservationCode: appt.properties['Reservation Code']?.rich_text[0]?.text?.content || null,
+    //     pageId: appt.id
+    //   }));
 
 
 
 
 // Generate the API response
-    res.status(200).json(appts_cleaned);
+    res.status(200).json(appts_results);
 
   } catch (error) {
     console.error('Error fetching Notion:', error);
