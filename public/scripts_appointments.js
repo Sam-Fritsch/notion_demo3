@@ -1,9 +1,7 @@
-// scripts_appointments.js
-
 const form = document.getElementById("reservationForm");
 const detailsDiv = document.querySelector(".appointment-details");
 
-
+// --- Fetch appointment from backend ---
 async function notion_find_appointment(reservation_code) {
   const body = { reservation_code };
 
@@ -12,9 +10,7 @@ async function notion_find_appointment(reservation_code) {
       "https://notion-demo3.vercel.app/api/notion_find_appointment",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       }
     );
@@ -24,40 +20,57 @@ async function notion_find_appointment(reservation_code) {
       throw new Error(`Server error: ${text}`);
     }
 
-    return await response.json();
+    return await response.json(); // returns array of appointments
   } catch (err) {
     console.error("Error fetching from Notion:", err);
     throw err;
   }
 }
 
+// --- Toggle display of appointment ---
+async function toggle_appointment(event) {
+  const button = event.target;
 
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
+  if (button.textContent === "Find Appointment") {
+    // Show loading state
+    detailsDiv.innerHTML = `<div class="loading">Searching for your appointment...</div>`;
+    button.textContent = "X";
 
-  const formData = new FormData(form);
-  const reservationCode = formData.get("reservationCode");
+    try {
+      const formData = new FormData(form);
+      const reservationCode = formData.get("reservationCode");
+      const result = await notion_find_appointment(reservationCode);
 
-  detailsDiv.innerHTML = `<div class="loading">Searching for your appointment...</div>`;
+      if (result && result.length > 0) {
+        const appointment = result[0];
+        const { date, startTime, firstName, lastName, service, reservationCode: foundReservationCode } = appointment;
 
-  try {
-    const result = await notion_find_appointment(reservationCode);
-
-    console.log(result);
-    if (result && result.appointment) {
-      const { date, time, service } = result.appointment;
-
-      detailsDiv.innerHTML = `
-        <div class="appointment-card">
-          <p><strong>Date:</strong> ${date}</p>
-          <p><strong>Time:</strong> ${time}</p>
-          <p><strong>Service:</strong> ${service}</p>
-        </div>
-      `;
-    } else {
-      detailsDiv.innerHTML = `<p>No appointment found for code: ${reservationCode}</p>`;
+        detailsDiv.innerHTML = `
+          <div class="appointment-card">
+            <p><strong>Reservation Code:</strong> ${foundReservationCode}</p>
+            <p><strong>Service:</strong> ${service}</p>
+            <p><strong>First Name:</strong> ${firstName}</p>
+            <p><strong>Last Name:</strong> ${lastName}</p>
+            <p><strong>Date:</strong> ${date}</p>
+            <p><strong>Time:</strong> ${startTime}</p>
+          </div>
+        `;
+      } else {
+        detailsDiv.innerHTML = `<p>No appointment found for code: ${reservationCode}</p>`;
+      }
+    } catch (err) {
+      detailsDiv.innerHTML = `<p class="error">Error finding appointment. Please try again.</p>`;
     }
-  } catch (err) {
-    detailsDiv.innerHTML = `<p class="error">Error finding appointment. Please try again.</p>`;
+
+  } else {
+    // Toggle back: hide details and reset button
+    detailsDiv.innerHTML = "";
+    button.textContent = "Find Appointment";
   }
-});
+}
+
+// Attach the toggle function to your submit button
+form.querySelector('button[type="submit"]').addEventListener("click", toggle_appointment);
+
+// Prevent default form submission
+form.addEventListener("submit", (e) => e.preventDefault());

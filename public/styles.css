@@ -454,19 +454,24 @@ a.redirect-link {
     font-weight: 400;
 }
 
-.submitcode-button {
-    background-color: #333;
+button.find-appointment-button {
+    background-color: rgb(14, 14, 14);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-align: center;
     font-family: "Rubik", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
-    font-style: normal;    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    font-style: normal;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 
 
 .submitcode-button:hover {
