@@ -242,7 +242,7 @@ function display_form(event, date, time, appointmentType, duration) {
                     Email:
                     <input type="email" name="email">
                 </label><br/>
-                <button type="submit">Book Appointment</button>
+                <button class="submit-booking" type="submit">Book Appointment</button>
             </form>
         `;
 }
