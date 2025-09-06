@@ -119,47 +119,29 @@ const appts_response = await fetch(
 
     console.log(appts_results);
   
-    // // const final_times = filtered_slots.filter(slot => 
-    // //     appts_results.some(appt => appt.date === slot.date && appt.time === slot.time)
-    // // );
-    // const appts_cleaned = appts_results
-    //   .filter(appt => {
-    //     const status = appt.properties.Status?.status?.name;
-    //     return status === 'Scheduled' || status === 'In Progress';
-    //   })
-    //   .map(appt => ({
-    //     date: appt.properties.Date.date?.start || null,
-    //     startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null
-    //   }));
-
-
-    // function parseDateTime(dateStr, timeStr) {
-    //   return new Date(`${dateStr} ${timeStr}`);
-    // }
-    // const HOUR_WINDOW = 3;
-
-    // const available_slots = filtered_slots.filter(slot => {
-    // const slotTime = parseDateTime(slot.date, slot.time);
-
-    // // If any appointment is within ±3 hours, exclude this slot
-    // const isBlocked = appts_cleaned.some(appt => {
-    // const apptTime = parseDateTime(appt.date, appt.startTime);
-    // const diffHours = Math.abs(slotTime - apptTime) / (1000 * 60 * 60); // convert ms to hours
-    // return diffHours <= HOUR_WINDOW;
-    // });
-
-    // return !isBlocked; // keep only if not blocked
-    // });
-
-    // console.log(available_slots);
-
-
+    // const final_times = filtered_slots.filter(slot => 
+    //     appts_results.some(appt => appt.date === slot.date && appt.time === slot.time)
+    // );
+    const appts_cleaned = appts_results
+      .filter(appt => {
+        const status = appt.properties.Status?.status?.name;
+        return status === 'Scheduled' || status === 'In Progress';
+      })
+      .map(appt => ({
+        date: appt.properties.Date.date?.start || null,
+        startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null,
+        firstName: appt.properties['Client First Name']?.rich_text[0]?.text?.content || null,
+        lastName: appt.properties['Client Last Name']?.rich_text[0]?.text?.content || null,
+        service: appt.properties['Service Type']?.rich_text[0]?.text?.content || null,
+        reservationCode: appt.properties['Reservation Code']?.rich_text[0]?.text?.content || null,
+        pageId: results[i].id
+      }));
 
 
 
 
 // Generate the API response
-    res.status(200).json(appts_results);
+    res.status(200).json(appts_cleaned);
 
   } catch (error) {
     console.error('Error fetching Notion:', error);
