@@ -385,6 +385,21 @@ a.redirect-link {
 }
 
 
+
+
+
+/* css below is for specific elements of the appointment.html file */
+
+
+.box_css_appointment_adjust {
+    padding: 1.2rem;
+    width: 700px;     
+    max-width: 100%;     
+    margin: 0 auto;     
+    box-sizing: border-box;
+    text-align: center;
+}
+
 .appointment-adjust {
     font-size: 1.25rem;
     font-weight: bold;
@@ -399,6 +414,24 @@ a.redirect-link {
     font-style: italic;
 }
 
+.submitcode-button {
+    background-color: #333;
+    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+
+.submitcode-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    background-color: #777;
+}
 
 @media only screen and (max-width: 600px) {
 
