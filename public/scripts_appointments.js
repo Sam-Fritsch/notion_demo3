@@ -79,3 +79,38 @@ form.querySelector('button[type="submit"]').addEventListener("click", toggle_app
 
 // Prevent default form submission
 form.addEventListener("submit", (e) => e.preventDefault());
+
+
+
+
+
+
+
+function cancel_appoitnment_appts_db(pageId) {
+    const body = {
+        pageId,
+        status: "Cancelled",
+    };
+
+    fetch("https://notion-demo3.vercel.app/api/notion_cancel_appointment", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(`Server error: ${text}`); });
+        }
+        return response.json();
+    })
+    .then(result => {
+        console.log("Notion update result:", result);
+   
+    })
+    .catch(err => {
+        console.error("Error sending to Notion:", err);
+        alert("Error cancelling appointment. Please try again.");
+    });
+  }
