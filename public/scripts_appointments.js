@@ -1,6 +1,23 @@
 const form = document.getElementById("reservationForm");
 
-function notion_add_appointment(reservation_code) {
+
+function toggle_appointment(event) {
+    const details = event.querySelector("appointment-details")
+    console.log(details);
+    if (button.textContent === "Find Appointment") {
+    details.innerHTML = `<div class="loading">Searching for your appointment...</div>`;
+
+    
+    try {
+        const times = await notion_find_appointment();
+        const weekEntries = Object.entries(times);
+        console.log(weekEntries);
+}
+
+
+
+
+function notion_find_appointment(reservation_code) {
     const body = {
         reservation_code
     };
@@ -34,5 +51,5 @@ form.addEventListener("submit", function(e) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);    
     const reservationCode = data["reservationCode"]
-    notion_add_appointment(reservationCode)
+    notion_find_appointment(reservationCode)
 })
