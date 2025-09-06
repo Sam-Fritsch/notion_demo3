@@ -47,6 +47,8 @@ async function toggle_appointment(event) {
 
         detailsDiv.innerHTML = `
           <div class="appointment-card">
+            <p><strong>We found your appointment!</strong><p>
+            <br>
             <p><strong>Reservation Code:</strong> ${foundReservationCode}</p>
             <p><strong>Service:</strong> ${service}</p>
             <p><strong>First Name:</strong> ${firstName}</p>
