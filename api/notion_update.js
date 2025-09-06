@@ -43,6 +43,9 @@ export default async function handler(req, res) {
         },
         "Service": {
             "rich_text": [{ "text": { "content": appointmentType || "" } }]
+        },
+        "Reservation Code": {
+            "rich_text": [{ "text": { "content": reservation_code || null } }]
         }
         };
 

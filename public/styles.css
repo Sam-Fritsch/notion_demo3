@@ -91,8 +91,10 @@ h1{
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
     color: #C2185B;
-    font-weight: 600;
-    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     line-height: 28px;
     text-align: center;
     margin: 0px;
@@ -111,8 +113,10 @@ h2{
     -webkit-font-smoothing: antialiased;
     box-sizing: border-box;
     color: rgb(14, 14, 14);
-    font-weight: 600;
-    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     font-size: 18px;
     line-height: 22px;
     margin: 0px 0px 0px 6px;
@@ -168,6 +172,10 @@ h2{
 }
 
 .appointment-type-name {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
@@ -175,11 +183,19 @@ h2{
 }
 
 .duration-price-detail {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1rem;
     color: #777;
 }
 
 .description {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     font-size: 1rem;
     color: #777;
 }
@@ -218,8 +234,10 @@ button.book-button {
     box-sizing: border-box;
     cursor: pointer;
     text-align: center;
-    font-weight: 600;
-    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     padding: 5px 10px;
     display: inline-block;
     margin-left: auto;
@@ -229,7 +247,10 @@ button.book-button {
 
 .time-zone-label{
     font-size: 1rem;
-    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
     color: rgb(14, 14, 14);
@@ -271,6 +292,8 @@ button.book-button {
     text-align: center;
     gap: 10px;
     flex-wrap: wrap;
+    
+
 }
 
 .time-slots > li {
@@ -285,6 +308,10 @@ button.book-button {
     padding: 0;
     text-align: center;
     margin-top: 0.5rem;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .specific-times li {
@@ -333,8 +360,10 @@ button.time-slot-button:hover {
     margin-bottom: 0.3rem;
     font-size: 0.9rem;
     color: #555;
-    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;}
 
 #required{
     color: #C2185B;
@@ -360,8 +389,10 @@ input, select {
 
 .submit-button {
     background-color: #333;
-    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: white;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;    color: white;
     padding: 10px;
     border: none;
     border-radius: 6px;
@@ -380,8 +411,11 @@ input, select {
 
 
 a.redirect-link {
-  color: #C2185B;
-  font-weight: bold;
+    color: #C2185B;
+    font-weight: bold;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 
@@ -402,7 +436,10 @@ a.redirect-link {
 
 .appointment-adjust {
     font-size: 1.25rem;
-    font-weight: bold;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
     margin-bottom: 0.5rem;
     color: rgb(14, 14, 14);
     text-align: center;
@@ -412,12 +449,17 @@ a.redirect-link {
     text-align: center;
     color: #C2185B;
     font-style: italic;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
 }
 
 .submitcode-button {
     background-color: #333;
-    font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: white;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;    color: white;
     padding: 10px;
     border: none;
     border-radius: 6px;
