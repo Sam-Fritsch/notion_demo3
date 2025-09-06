@@ -55,6 +55,9 @@ async function toggle_appointment(event) {
             <p><strong>Last Name:</strong> ${lastName}</p>
             <p><strong>Date:</strong> ${date}</p>
             <p><strong>Time:</strong> ${startTime}</p>
+
+            <p>Are you sure you want to cancel your appointment? Once cancelled, your time slot will become available for others. If you change your mind, you can always book a new appointment.</p>
+            <button class="final-cancel-button" type="submit">Yes, Cancel</button>
           </div>
         `;
       } else {
