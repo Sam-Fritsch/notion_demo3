@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { pageId, firstName, lastName, phone, email, status, appointmentType } = req.body;
+  const { pageId, firstName, lastName, phone, email, status, appointmentType, reservation_code } = req.body;
 
 
   if (!process.env.NOTION_API_KEY) {
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
             "rich_text": [{ "text": { "content": appointmentType || "" } }]
         },
         "Reservation Code": {
-            "rich_text": [{ "text": { "content": reservation_code || null } }]
+          "rich_text": [{ "text": { "content": reservation_code || null } }]
         }
         };
 

@@ -322,7 +322,7 @@ document.addEventListener("submit", function(e) {
     const reservation_code = generate_res_code(7)
 
     notion_add_appointment(firstName, lastName, phone, email, appointmentType, selectedDate, selectedTime, endTime, reservation_code);
-    update_notion(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email)
+    update_notion(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email, reservation_code)
     display_thank_you(firstName, lastName, selectedDate, selectedTime, reservation_code);
     cachedTimes = null;
 });
