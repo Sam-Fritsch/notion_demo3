@@ -31,7 +31,7 @@ async function notion_find_appointment(reservation_code) {
 async function toggle_appointment(event) {
   const button = event.target;
 
-  if (button.textContent === "Find Appointment") {
+  if (button.textContent === "FIND APPOINTMENT") {
     // Show loading state
     detailsDiv.innerHTML = `<div class="loading">Searching for your appointment...</div>`;
     button.textContent = "X";
@@ -67,7 +67,7 @@ async function toggle_appointment(event) {
   } else {
     // Toggle back: hide details and reset button
     detailsDiv.innerHTML = "";
-    button.textContent = "Find Appointment";
+    button.textContent = "FIND APPOINTMENT";
   }
 }
 

@@ -432,6 +432,28 @@ a.redirect-link {
     margin: 0 auto;     
     box-sizing: border-box;
     text-align: center;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+
+.appointment-card{
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+}
+
+
+
+.time-zone-label{
+    font-size: 1rem;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: rgb(14, 14, 14);
 }
 
 .appointment-adjust {
