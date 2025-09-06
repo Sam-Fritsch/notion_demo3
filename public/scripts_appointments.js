@@ -1,7 +1,8 @@
-document.addEventListener("submitcode", function(e) {
+const form = document.getElementById("reservationForm");
+
+form.addEventListener("submit", function(e) {
     e.preventDefault();
-    const form = e.target;
-    const data = Object.fromEntries(new FormData(form));
-    console.log(data);
-    console.log("hello");
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);    
+    const reservationCode = data["reservationCode"]
 })
