@@ -76,7 +76,7 @@ export default async function handler(req, res) {
 
       
 // Get existing appointment times to cross compare with open slots //
-  const {reservation_code} = req.body;
+const {reservation_code} = req.body;
 
 
 if (!process.env.NOTION_API_KEY || !process.env.NOTION_SLOTS_DB_ID || !process.env.NOTION_APPTS_DB_ID) {
@@ -134,7 +134,7 @@ const appts_response = await fetch(
         lastName: appt.properties['Client Last Name']?.rich_text[0]?.text?.content || null,
         service: appt.properties['Service Type']?.rich_text[0]?.text?.content || null,
         reservationCode: appt.properties['Reservation Code']?.rich_text[0]?.text?.content || null,
-        pageId: results[i].id
+        pageId: appt.id
       }));
 
 
