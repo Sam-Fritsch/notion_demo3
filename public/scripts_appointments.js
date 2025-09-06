@@ -43,8 +43,7 @@ async function toggle_appointment(event) {
 
       if (result && result.length > 0) {
         const appointment = result[0];
-        const { date, startTime, firstName, lastName, service, reservationCode: foundReservationCode } = appointment;
-
+        const { pageId, date, startTime, firstName, lastName, service, reservationCode: foundReservationCode } = appointment;
         detailsDiv.innerHTML = `
           <div class="appointment-card">
             <p><strong>We found your appointment!</strong><p>
@@ -60,6 +59,15 @@ async function toggle_appointment(event) {
             <button class="final-cancel-button" type="submit">Yes, Cancel</button>
           </div>
         `;
+
+
+        const cancelButtons = document.querySelectorAll('.final-cancel-button');
+
+          cancelButtons.forEach(button => {
+              button.addEventListener("click", () => {
+              cancel_appoitnment_appts_db(pageId);
+          });
+        });
       } else {
         detailsDiv.innerHTML = `<p>No appointment found for code: ${reservationCode}</p>`;
       }
@@ -80,8 +88,7 @@ form.querySelector('button[type="submit"]').addEventListener("click", toggle_app
 // Prevent default form submission
 form.addEventListener("submit", (e) => e.preventDefault());
 
-
-
+form.querySelector('button[type="submit"]').addEventListener("click", toggle_appointment);
 
 
 
