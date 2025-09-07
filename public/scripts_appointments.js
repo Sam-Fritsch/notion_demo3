@@ -91,8 +91,7 @@ form.addEventListener("submit", (e) => e.preventDefault());
 form.querySelector('button[type="submit"]').addEventListener("click", toggle_appointment);
 
 
-
-
+// Cancel appointment in the appointments database //
 function cancel_appoitnment_appts_db(pageId) {
     const body = {
         pageId,

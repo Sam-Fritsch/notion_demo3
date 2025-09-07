@@ -392,10 +392,7 @@ function notion_add_appointment(firstName, lastName, phone, email, appointmentTy
 
 
 
-
-
-
-function update_notion(pageId, appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email) {
+function update_notion(pageId, appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email, reservation_code) {
     const body = {
         pageId,
         firstName,
@@ -403,7 +400,8 @@ function update_notion(pageId, appointmentType, selectedDate, selectedTime, firs
         phone,
         email,
         status: "Booked",
-        appointmentType
+        appointmentType,
+        reservation_code
     };
 
     fetch("https://notion-demo3.vercel.app/api/notion_update", {
