@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         };
 
 
-    // PATCH request to Notion
+    // PATCH request to Notion db
     const response = await fetch(`https://api.notion.com/v1/pages/${pageId}`, {
       method: 'PATCH',
       headers: {
