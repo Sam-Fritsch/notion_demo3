@@ -100,8 +100,8 @@ async function toggle_appointment(event) {
 
           cancelButtons.forEach(button => {
               button.addEventListener("click", () => {
-              cancel_appointment_appts_db(pageId);
-              cancel_appointment_timeslots_db(booking_result)
+              // cancel_appointment_appts_db(pageId);
+              cancel_appointment_timeslots_db(bookingPageId);
               display_cancel_message();
           });
         });
