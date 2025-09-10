@@ -71,12 +71,14 @@ async function toggle_appointment(event) {
       const reservationCode = formData.get("reservationCode");
       const result = await notion_find_appointment(reservationCode);
       const booking_result = await notion_find_booking(reservationCode);
-      console.log(booking_result);
       
 
       if (result && result.length > 0) {
         const appointment = result[0];
         const { pageId, date, startTime, firstName, lastName, service, reservationCode: foundReservationCode } = appointment;
+        const booking = booking_result[0]
+        const bookingPageId = booking["pageId"]
+        
         detailsDiv.innerHTML = `
           <div class="appointment-card">
             <p><strong>We found your appointment!</strong><p>
@@ -98,7 +100,8 @@ async function toggle_appointment(event) {
 
           cancelButtons.forEach(button => {
               button.addEventListener("click", () => {
-              cancel_appoitnment_appts_db(pageId);
+              cancel_appointment_appts_db(pageId);
+              cancel_appointment_timeslots_db(booking_result)
               display_cancel_message();
           });
         });
@@ -126,7 +129,7 @@ form.querySelector('button[type="submit"]').addEventListener("click", toggle_app
 
 
 // Cancel appointment in the appointments database //
-function cancel_appoitnment_appts_db(pageId) {
+function cancel_appointment_appts_db(pageId) {
     const body = {
         pageId,
         status: "Cancelled",
@@ -155,6 +158,37 @@ function cancel_appoitnment_appts_db(pageId) {
     });
   }
 
+
+
+// Cancel appointment in the time slots database //
+function cancel_appointment_timeslots_db(pageId) {
+    const body = {
+        pageId,
+        status: "Open",
+    };
+
+    fetch("https://notion-demo3.vercel.app/api/notion_cancel_time_slot", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.text().then(text => { throw new Error(`Server error: ${text}`); });
+        }
+        return response.json();
+    })
+    .then(result => {
+        console.log("Notion update result:", result);
+   
+    })
+    .catch(err => {
+        console.error("Error sending to Notion:", err);
+        alert("Error cancelling appointment. Please try again.");
+    });
+  }
 
 
 function display_cancel_message() {
