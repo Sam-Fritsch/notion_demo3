@@ -62,7 +62,7 @@ const appts_response = await fetch(
         startTime: appt.properties['Start Time']?.rich_text[0]?.text?.content || null,
         firstName: appt.properties['Client First Name']?.title[0]?.text?.content || null,
         lastName: appt.properties['Client Last Name']?.rich_text[0]?.text?.content || null,
-        service: appt.properties['Service Type']?.rich_text[0]?.text?.content || null,
+        service: appt.properties['Service Type']?.rich_text?.[0]?.text?.content || null,
         reservationCode: appt.properties['Reservation Code']?.rich_text[0]?.text?.content || null,
         pageId: appt.id
       }));

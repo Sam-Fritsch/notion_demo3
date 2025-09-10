@@ -71,7 +71,7 @@ async function toggle_appointment(event) {
       const reservationCode = formData.get("reservationCode");
       const result = await notion_find_appointment(reservationCode);
       const booking_result = await notion_find_booking(reservationCode);
-      console.loge(booking_result);
+      console.log(booking_result);
       
 
       if (result && result.length > 0) {
