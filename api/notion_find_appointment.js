@@ -35,7 +35,7 @@ const appts_response = await fetch(
             filter: {
                 property: "Reservation Code",
                 rich_text: {
-                    equals: reservation_code
+                    equals: reservation_code.trim()
                 }
             }
         })

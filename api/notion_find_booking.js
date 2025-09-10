@@ -35,7 +35,7 @@ const books_response = await fetch(
             filter: {
                 property: "Reservation Code",
                 rich_text: {
-                    equals: reservation_code
+                    equals: reservation_code.trim()
                 }
             }
         })
@@ -45,6 +45,7 @@ const books_response = await fetch(
     // Check for Notion errors
     if (!books_response.ok) {
       const bookings_text = await books_response.text();
+      console.log(bookings_text);
       throw new Error(`Notion API error: ${books_response.status} ${bookings_text}`);
     }
 
@@ -55,7 +56,7 @@ const books_response = await fetch(
     const booking_cleaned = booking_results
       .filter(book => {
         const status = book.properties.Status?.status?.name;
-        return status === 'Scheduled' || status === 'In Progress';
+        return status === 'Booked';
       })
       .map(book => ({
         date: book.properties.Date.date?.start || null,
