@@ -25,11 +25,30 @@ export default async function handler(req, res) {
   }
 
   try {
-    const properties = {
+        const properties = {
         "Status": {
-            "status": { "name": status || null }
+            status: status ? { name: status } : null
+        },
+        "First Name": {
+            rich_text: []
+        },
+        "Last Name": {
+            rich_text: [] 
+        },
+        "Phone": {
+            phone_number: null 
+        },
+        "Email": {
+            email: null 
+        },
+        "Service": {
+            rich_text: []
+        },
+        "Reservation Code": {
+            rich_text: [] 
         }
         };
+
 
 
     // PATCH request to Notion db
