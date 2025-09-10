@@ -13,8 +13,6 @@ export default async function handler(req, res) {
 
 const {reservation_code} = req.body;
 
-console.log(reservation_code);
-console.log('called');
 
 
 if (!process.env.NOTION_API_KEY || !process.env.NOTION_SLOTS_DB_ID || !process.env.NOTION_APPTS_DB_ID) {
@@ -70,7 +68,7 @@ const books_response = await fetch(
         pageId: book.id
       }));
 
-
+    console.log(booking_cleaned);
 
 
 // Generate the API response
