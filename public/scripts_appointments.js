@@ -40,6 +40,8 @@ async function toggle_appointment(event) {
       const formData = new FormData(form);
       const reservationCode = formData.get("reservationCode");
       const result = await notion_find_appointment(reservationCode);
+      const booking_result = await notion_find_booking(reservationCode);
+      console.log(booking_result);
 
       if (result && result.length > 0) {
         const appointment = result[0];
@@ -56,7 +58,7 @@ async function toggle_appointment(event) {
             <p><strong>Time:</strong> ${startTime}</p>
 
             <p>Are you sure you want to cancel your appointment? Once cancelled, your time slot will become available for others. If you change your mind, you can always book a new appointment.</p>
-            <button class="final-cancel-button" type="submit">Yes, Cancel</button>
+            <div class="cancel-area"><button class="final-cancel-button" type="submit">Yes, Cancel</button></div>
           </div>
         `;
 
@@ -66,6 +68,7 @@ async function toggle_appointment(event) {
           cancelButtons.forEach(button => {
               button.addEventListener("click", () => {
               cancel_appoitnment_appts_db(pageId);
+              display_cancel_message();
           });
         });
       } else {
@@ -120,3 +123,10 @@ function cancel_appoitnment_appts_db(pageId) {
         alert("Error cancelling appointment. Please try again.");
     });
   }
+
+
+
+function display_cancel_message() {
+  const formArea = document.querySelector('.cancel-area');
+  formArea.innerHTML = '<p><strong>We have successfully cancelled your appointment!</strong></p>';
+}
