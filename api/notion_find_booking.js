@@ -13,6 +13,9 @@ export default async function handler(req, res) {
 
 const {reservation_code} = req.body;
 
+console.log(reservation_code);
+console.log('called');
+
 
 if (!process.env.NOTION_API_KEY || !process.env.NOTION_SLOTS_DB_ID || !process.env.NOTION_APPTS_DB_ID) {
     res.status(500).json({ error: 'Missing Notion environment variables' });
@@ -45,7 +48,6 @@ const books_response = await fetch(
     // Check for Notion errors
     if (!books_response.ok) {
       const bookings_text = await books_response.text();
-      console.log(bookings_text);
       throw new Error(`Notion API error: ${books_response.status} ${bookings_text}`);
     }
 
