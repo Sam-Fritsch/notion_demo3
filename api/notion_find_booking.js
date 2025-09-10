@@ -60,11 +60,11 @@ const books_response = await fetch(
         return status === 'Booked';
       })
       .map(book => ({
-        date: book.properties.Date.date?.start || null,
-        startTime: book.properties['Time']?.rich_text[0]?.text?.content || null,
-        firstName: book.properties['First Name']?.title[0]?.text?.content || null,
-        lastName: book.properties['Last Name']?.rich_text[0]?.text?.content || null,
-        service: book.properties['Service']?.rich_text[0]?.text?.content || null,
+        // date: book.properties.Date.date?.start || null,
+        // startTime: book.properties['Time']?.rich_text[0]?.text?.content || null,
+        // firstName: book.properties['First Name']?.title[0]?.text?.content || null,
+        // lastName: book.properties['Last Name']?.rich_text[0]?.text?.content || null,
+        // service: book.properties['Service']?.rich_text[0]?.text?.content || null,
         reservationCode: book.properties['Reservation Code']?.rich_text[0]?.text?.content || null,
         pageId: book.id
       }));
