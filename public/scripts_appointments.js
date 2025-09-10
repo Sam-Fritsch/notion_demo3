@@ -27,6 +27,36 @@ async function notion_find_appointment(reservation_code) {
   }
 }
 
+async function notion_find_booking(reservation_code) {
+  const body = { reservation_code };
+
+  try {
+    const response = await fetch(
+      "https://notion-demo3.vercel.app/api/notion_find_booking",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }
+    );
+
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`Server error: ${text}`);
+    }
+
+    return await response.json(); // returns array of appointments
+  } catch (err) {
+    console.error("Error fetching from Notion:", err);
+    throw err;
+  }
+}
+
+
+
+
+
+
 // --- Toggle display of appointment ---
 async function toggle_appointment(event) {
   const button = event.target;
