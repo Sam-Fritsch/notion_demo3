@@ -98,11 +98,11 @@ async function toggle_appointment(event) {
 
         const cancelButtons = document.querySelectorAll('.final-cancel-button');
 
-          cancelButtons.forEach(button => {
-              button.addEventListener("click", () => {
-              // cancel_appointment_appts_db(pageId);
-              cancel_appointment_timeslots_db(bookingPageId);
-              display_cancel_message();
+        cancelButtons.forEach(button => {
+          button.addEventListener("click", async () => {
+            await cancel_appointment_appts_db(pageId);
+            await cancel_appointment_timeslots_db(bookingPageId);
+            display_cancel_message();
           });
         });
       } else {
@@ -189,6 +189,11 @@ function cancel_appointment_timeslots_db(pageId) {
         alert("Error cancelling appointment. Please try again.");
     });
   }
+
+function cancellation_in_progress_message() {
+  const formArea = document.querySelector('.cancel-area');
+  formArea.innerHTML = '<p>Cancelling...</p>';
+}
 
 
 function display_cancel_message() {
