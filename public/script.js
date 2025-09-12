@@ -323,7 +323,13 @@ document.addEventListener("submit", function(e) {
 
     notion_add_appointment(firstName, lastName, phone, email, appointmentType, selectedDate, selectedTime, endTime, reservation_code);
     update_notion(pageId,appointmentType, selectedDate, selectedTime, firstName, lastName, phone, email, reservation_code)
-    display_thank_you(firstName, lastName, selectedDate, selectedTime, reservation_code);
+    
+    const formArea = form.closest('.select-item').querySelector('.time-zone-label');
+    formArea.innerHTML = '<p>Processing appointment...</p>';
+
+    setTimeout(() => {
+    display_thank_you(formArea,firstName, lastName, selectedDate, selectedTime, reservation_code);
+    }, 1500);
     cachedTimes = null;
 });
 
@@ -332,10 +338,9 @@ document.addEventListener("submit", function(e) {
 
 
 
-function display_thank_you(firstName, lastName, selectedDate, selectedTime, reservation_code){
-    const button = event.target;
-    const box = button.closest('.select-item');
-    const formArea = box.querySelector('.time-zone-label');
+function display_thank_you(formArea,firstName, lastName, selectedDate, selectedTime, reservation_code){
+    // const box = button.closest('.select-item');
+    // const formArea = box.querySelector('.time-zone-label');
 
     formArea.innerHTML = `
         <h4>Thank you for booking with Aether By S!</h4>
