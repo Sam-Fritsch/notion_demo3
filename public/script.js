@@ -330,6 +330,8 @@ document.addEventListener("submit", function(e) {
     setTimeout(() => {
     display_thank_you(formArea,firstName, lastName, selectedDate, selectedTime, reservation_code);
     }, 1500);
+    sendMail(firstName, lastName, phone, email, appointmentType, selectedDate, selectedTime, endTime, reservation_code);
+
     cachedTimes = null;
 });
 
@@ -349,6 +351,28 @@ function display_thank_you(formArea,firstName, lastName, selectedDate, selectedT
         <p>We have received your booking and are excited to see you soon!</p>
         `;
 }
+
+// Send email to owners //
+function sendMail(firstName, lastName, phone, email, appointmentType, date, startTime, endTime, reservation_code) {
+    const serviceId = 'service_0p7izz4';
+    const tempId = 'template_cq5whly';
+
+    const params = {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: email,
+        appointmentType: appointmentType,
+        date: date,
+        startTime: startTime,
+        endTime: endTime,
+        reservation_code: reservation_code
+    };
+
+    emailjs.send(serviceId, tempId, params);
+}
+
+
 
 
 
